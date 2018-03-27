@@ -1,0 +1,26 @@
+from django import forms
+from django.contrib.auth.models import User
+from .models import UserProfileInfo
+
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email', 'password')
+
+
+class UserProfileInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserProfileInfo
+        fields = ('dob', 'phone_no')
+
+
+class DeleteUser(forms.Form):
+    username = forms.CharField()
+
+
+class UpdateUserPass(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput())

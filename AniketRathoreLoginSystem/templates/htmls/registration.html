@@ -1,0 +1,26 @@
+{% extends "htmls/base.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+    <div class="container">
+        <div class="jumbotron">
+            {% if registered %}
+                <h2>Thank You For Registering!</h2>
+            {% else %}
+                <h2>Register Here</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <p><i style="font-size: x-small">Note: Dob and Phone Field Are Optional</i></p>
+                    <p><i style="font-size: x-small">Date Format: 'YYYY-MM-DD' </i></p>
+                    <input type="submit" name="" class="btn btn-primary" value="Register">
+                </form>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
